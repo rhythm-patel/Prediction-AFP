@@ -19,7 +19,14 @@ for rows in y:
         ls[i] =  ls[i]*100/len(rows)
     listOfPercentages.append(ls)
 
-npA = np.array(listOfPercentages)
-for el in x:
-    print(el)
+for l in range(len(x)):
+    listOfPercentages[l].append(x[l])
+
+np.savetxt('output.csv',listOfPercentages,delimiter=",")
 # print(listOfPercentages)
+
+dataset = pd.read_csv("output.csv")
+
+x = dataset.iloc[:,20]
+for rows in x:
+    print(rows)
