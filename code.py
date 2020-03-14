@@ -6,6 +6,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.svm import SVC
 from sklearn.model_selection import KFold
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import tree
 
 s = {'A':1,'R':2,'N':3,'D':4,'C':5,'E':6,'Q':7,'G':8,'H':9,'I':10,'L':11,'K':12,'M':13,'F':14,'P':15,'S':16,'T':17,'W':18,'Y':19,'V':20}
 
@@ -34,6 +36,20 @@ def fitModel(X_train,y_train,gamma):
     model = SVC(gamma=gamma, kernel = "rbf") # our ML model
     model.fit(X_train,y_train) # fit the model by x & y of train
     return model
+
+    # clf = RandomForestClassifier(max_depth=100, random_state=0)
+    # clf.fit(X_train,y_train)
+    # return clf
+
+    # clf = tree.DecisionTreeClassifier()
+    # clf = clf.fit(X_train, y_train)
+    # return clf
+
+    # clf = tree.DecisionTreeRegressor()
+    # clf = clf.fit(X_train, y_train)
+    # return clf
+
+
 
 def findAccuracy(gamma):
 
@@ -97,7 +113,7 @@ def predict(gamma):
     for i in range(len(y_test)):
         temp = []
         temp.append(IDs[i]) #adds the IDs
-        temp.append(y_test[i]) #adds the predicted y values i.e 1/-1
+        temp.append(int(y_test[i])) #adds the predicted y values i.e 1/-1
         output.append(temp)
 
     with open('submission.csv', 'w', newline='') as file:
@@ -126,8 +142,8 @@ def findOptimalGamma():
     plt.plot(gammaArr,train,gammaArr,test)
     plt.show()
 
-gamma = 91
+gamma = 200
 
-predict(91)
-x = findAccuracy(91)
+predict(gamma)
+x = findAccuracy(gamma)
 # findOptimalGamma()
