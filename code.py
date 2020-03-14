@@ -15,7 +15,7 @@ y = dataset.iloc[:,2]
 testSet = testset.iloc[:,1]
 sampleset = sample.iloc[:,0]
 
-s = {'A':1,'R':2,'N':3,'D':4,'C':5,'E':6,'Q':7,'G':8,'H':9,'I':10,'L':11,'K':12,'M':13,'F':14,'P':15,'S':16,'T':17,'W':18,'Y':19,'V':20}
+s = {'A':0,'R':1,'N':2,'D':3,'C':4,'E':5,'Q':6,'G':7,'H':8,'I':9,'L':10,'K':11,'M':12,'F':13,'P':14,'S':15,'T':16,'W':17,'Y':18,'V':19}
 
 listOfPercentages = list()
 listOfPercentagesOut = list()
@@ -23,9 +23,11 @@ listOfPercentagesOut = list()
 for rows in y:
     ls = [0]*20
     for a in rows:
-        ls[s[a]-1] += 1
+        index = s[a]
+        ls[index] += 1
     for i in range(20):
-        ls[i] =  ls[i]/len(rows)
+        lenRows = len(rows)
+        ls[i] =  ls[i]/lenRows
     listOfPercentages.append(ls)
 
 # for l in range(len(x)):
