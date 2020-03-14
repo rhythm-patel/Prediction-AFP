@@ -22,11 +22,11 @@ listOfPercentagesOut = list()
 
 for rows in y:
     ls = [0]*20
+    lenRows = len(rows)
     for a in rows:
         index = s[a]-1
         ls[index] += 1
     for i in range(20):
-        lenRows = len(rows)
         ls[i] =  ls[i]/lenRows
     listOfPercentages.append(ls)
 
@@ -35,10 +35,12 @@ for rows in y:
 
 for rows in testSet:
     ls = [0]*20
+    lenRows = len(rows)
     for a in rows:
-        ls[s[a]-1] += 1
+        index = s[a]-1
+        ls[index] += 1
     for i in range(20):
-        ls[i] = ls[i]/len(rows)
+        ls[i] = ls[i]/lenRows
     listOfPercentagesOut.append(ls)
 
 
