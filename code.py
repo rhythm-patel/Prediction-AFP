@@ -30,12 +30,12 @@ def findPercentageInSeries(ser):
 
     return percentages
 
-def fitModel(X_train,y_train):
-    model = SVC(gamma=30, kernel = "rbf") # our ML model
+def fitModel(X_train,y_train,gamma):
+    model = SVC(gamma=gamma, kernel = "rbf") # our ML model
     model.fit(X_train,y_train) # fit the model by x & y of train
     return model
 
-def findAccuracy():
+def findAccuracy(gamma):
 
     trainDataset = pd.read_csv("train.csv")
     test = pd.read_csv("test.csv")
@@ -58,7 +58,7 @@ def findAccuracy():
         X_train, X_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
 
-        model = fitModel(X_train,y_train)
+        model = fitModel(X_train,y_train,gamma)
 
         trainAccuracy = model.score(X_train,y_train) # first predicts X_train to y_train' & then compares with y_train
         testAccuracy = model.score(X_test,y_test)  # first predicts X_test to y_test' & then compares with y_test
@@ -68,10 +68,13 @@ def findAccuracy():
         # rmse = sqrt(mean_squared_error(y_test, y_pred))
         # print (rmse)
 
-    print ("Avg Train Accuracy: ",sum(trainAcc)/noOfSplits)
-    print ("Avg Test Accuracy: ",sum(testAcc)/noOfSplits)
+    avgTrainAccuracy = sum(trainAcc)/noOfSplits
+    avgTestAccuracy = sum(testAcc)/noOfSplits
+    print ("Avg Train Accuracy: ",avgTrainAccuracy)
+    print ("Avg Test Accuracy: ",avgTestAccuracy)
+    return (avgTrainAccuracy,avgTestAccuracy)
 
-def predict():
+def predict(gamma):
 
     train = pd.read_csv("train.csv")
     test = pd.read_csv("test.csv")
@@ -87,7 +90,7 @@ def predict():
     y_train = np.asarray(y_train) # convert list to numpy array
     # y_train = np.ravel(y_train) # reshape 2D array to 1D array
 
-    model = fitModel(X_train,y_train)
+    model = fitModel(X_train,y_train,gamma)
     y_test = model.predict(X_test) # predict the y of test based on our model
 
     output = [["ID","Label"]]
@@ -101,5 +104,30 @@ def predict():
         writer = csv.writer(file)
         writer.writerows(output)
 
-predict()
-findAccuracy()
+def findOptimalGamma():
+    val = []
+    gammaArr = []
+
+    for gamma in range(10,150):
+
+        print ("Gamma: ",gamma)
+        gammaArr.append(gamma)
+
+        predict(gamma)
+        temp = findAccuracy(gamma)
+        val.append(temp)
+
+    train = []
+    test = []
+    for i in val:
+        train.append(i[0])
+        test.append(i[1])
+
+    plt.plot(gammaArr,train,gammaArr,test)
+    plt.show()
+
+gamma = 91
+
+predict(91)
+x = findAccuracy(91)
+# findOptimalGamma()
