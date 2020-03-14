@@ -36,6 +36,10 @@ def findPercentageInSeries(ser):
 
 def fitModel(X_train,y_train):
 
+    model = SVC(gamma=91, kernel = "rbf") # our ML model
+    model.fit(X_train,y_train) # fit the model by x & y of train
+    return model
+
     # clf = RandomForestClassifier(max_depth=200, random_state=0)
     # clf.fit(X_train,y_train)
     # return clf
@@ -44,9 +48,9 @@ def fitModel(X_train,y_train):
     # clf = clf.fit(X_train, y_train)
     # return clf
 
-    clf = tree.DecisionTreeRegressor()
-    clf = clf.fit(X_train, y_train)
-    return clf
+    # clf = tree.DecisionTreeRegressor()
+    # clf = clf.fit(X_train, y_train)
+    # return clf
 
 def findAccuracy():
 

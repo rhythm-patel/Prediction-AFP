@@ -142,7 +142,7 @@ def findOptimalGamma():
     plt.plot(gammaArr,train,gammaArr,test)
     plt.show()
 
-gamma = 200
+gamma = 91
 
 predict(gamma)
 x = findAccuracy(gamma)
