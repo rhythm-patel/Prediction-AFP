@@ -34,15 +34,15 @@ def findPercentageInSeries(ser):
 
     return percentages
 
-def fitModel(X_train,y_train):
+def fitModel(X_train,y_train,gamma):
 
-    model = SVC(gamma=91, kernel = "rbf") # our ML model
-    model.fit(X_train,y_train) # fit the model by x & y of train
-    return model
+    # model = SVC(gamma=91, kernel = "rbf") # our ML model
+    # model.fit(X_train,y_train) # fit the model by x & y of train
+    # return model
 
-    # clf = RandomForestClassifier(max_depth=200, random_state=0)
-    # clf.fit(X_train,y_train)
-    # return clf
+    clf = RandomForestClassifier(n_estimators = gamma)
+    clf.fit(X_train,y_train)
+    return clf
 
     # clf = tree.DecisionTreeClassifier()
     # clf = clf.fit(X_train, y_train)
@@ -52,7 +52,7 @@ def fitModel(X_train,y_train):
     # clf = clf.fit(X_train, y_train)
     # return clf
 
-def findAccuracy():
+def findAccuracy(gamma):
 
     trainDataset = pd.read_csv("train.csv")
     test = pd.read_csv("test.csv")
@@ -75,7 +75,7 @@ def findAccuracy():
         X_train, X_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
 
-        model = fitModel(X_train,y_train)
+        model = fitModel(X_train,y_train,gamma)
 
         trainAccuracy = model.score(X_train,y_train) # first predicts X_train to y_train' & then compares with y_train
         testAccuracy = model.score(X_test,y_test)  # first predicts X_test to y_test' & then compares with y_test
@@ -85,12 +85,13 @@ def findAccuracy():
         # rmse = sqrt(mean_squared_error(y_test, y_pred))
         # print (rmse)
 
-    print ("Avg Train Accuracy: ",sum(trainAcc)/noOfSplits)
-    print ("Avg Test Accuracy: ",sum(testAcc)/noOfSplits)
+    avgTrainAccuracy = sum(trainAcc)/noOfSplits
+    avgTestAccuracy = sum(testAcc)/noOfSplits
+    print ("Avg Train Accuracy: ",avgTrainAccuracy)
+    print ("Avg Test Accuracy: ",avgTestAccuracy)
+    return (avgTrainAccuracy,avgTestAccuracy)
 
-    return sum(testAcc)/noOfSplits
-
-def predict():
+def predict(gamma):
 
     train = pd.read_csv("train.csv")
     test = pd.read_csv("test.csv")
@@ -106,7 +107,7 @@ def predict():
     y_train = np.asarray(y_train) # convert list to numpy array
     # y_train = np.ravel(y_train) # reshape 2D array to 1D array
 
-    model = fitModel(X_train,y_train)
+    model = fitModel(X_train,y_train,gamma)
     y_test = model.predict(X_test) # predict the y of test based on our model
 
     print(y_test)
@@ -114,13 +115,37 @@ def predict():
     for i in range(len(y_test)):
         temp = []
         temp.append(IDs[i]) #adds the IDs
-        temp.append(y_test[i]) #adds the predicted y values i.e 1/-1
+        temp.append(int(y_test[i])) #adds the predicted y values i.e 1/-1
         output.append(temp)
 
     with open('submission.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(output)
 
+def findOptimalGamma(start,end):
+    val = []
+    gammaArr = []
 
-predict()
-m = findAccuracy()
+    for gamma in range(start,end,50):
+
+        print ("Gamma: ",gamma)
+        gammaArr.append(gamma)
+
+        # predict(gamma)
+        temp = findAccuracy(gamma)
+        val.append(temp)
+
+    train = []
+    test = []
+    for i in val:
+        train.append(i[0])
+        test.append(i[1])
+
+    plt.plot(gammaArr,train,gammaArr,test)
+    plt.show()
+
+gamma = 700
+
+# predict(gamma)
+# x = findAccuracy(gamma)
+findOptimalGamma(0,700)

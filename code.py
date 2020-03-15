@@ -33,13 +33,13 @@ def findPercentageInSeries(ser):
     return percentages
 
 def fitModel(X_train,y_train,gamma):
-    model = SVC(gamma=gamma, kernel = "rbf") # our ML model
-    model.fit(X_train,y_train) # fit the model by x & y of train
-    return model
+    # model = SVC(gamma=gamma, kernel = "rbf") # our ML model
+    # model.fit(X_train,y_train) # fit the model by x & y of train
+    # return model
 
-    # clf = RandomForestClassifier(max_depth=100, random_state=0)
-    # clf.fit(X_train,y_train)
-    # return clf
+    clf = RandomForestClassifier(n_estimators = gamma)
+    clf.fit(X_train,y_train)
+    return clf
 
     # clf = tree.DecisionTreeClassifier()
     # clf = clf.fit(X_train, y_train)
@@ -120,16 +120,16 @@ def predict(gamma):
         writer = csv.writer(file)
         writer.writerows(output)
 
-def findOptimalGamma():
+def findOptimalGamma(start,end):
     val = []
     gammaArr = []
 
-    for gamma in range(10,150):
+    for gamma in range(start,end,10):
 
         print ("Gamma: ",gamma)
         gammaArr.append(gamma)
 
-        predict(gamma)
+        # predict(gamma)
         temp = findAccuracy(gamma)
         val.append(temp)
 
@@ -144,6 +144,6 @@ def findOptimalGamma():
 
 gamma = 91
 
-predict(gamma)
-x = findAccuracy(gamma)
-# findOptimalGamma()
+# predict(gamma)
+# x = findAccuracy(gamma)
+findOptimalGamma(500,2000)
