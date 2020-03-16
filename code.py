@@ -119,6 +119,8 @@ def predict(gamma):
     with open('submission.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(output)
+        
+    print("Output in submission.csv")
 
 def findOptimalGamma(start,end):
     val = []
