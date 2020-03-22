@@ -47,9 +47,7 @@ Code in: best1.py
 ```
 python3 final.py -o best1.csv -type tripeptide -model RFC -n_estimators 700
 ```
-```
-python3 best1.py
-```
+
 >Output exported in best1.csv\
 Avg Train Accuracy:  1.0\
 Avg Test Accuracy:  0.8901960784313726
@@ -63,9 +61,7 @@ Code in: best2.py
 ```
 python3 final.py -o best2.csv -type tripeptide -model SVC -gamma 15
 ```
-```
-python3 best2.py
-```
+
 >Output exported in best2.csv\
 Avg Train Accuracy:  0.9859803921568627\
 Avg Test Accuracy:  0.8741176470588237
@@ -79,9 +75,7 @@ Code in: best3.py
 ```
 python3 final.py -o best3.csv -type dipeptide -model SVC -gamma 91
 ```
-```
-python3 best3.py
-```
+
 >Output exported in best3.csv\
 Avg Train Accuracy:  0.9981372549019607\
 Avg Test Accuracy:  0.8631372549019607
