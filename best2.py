@@ -291,8 +291,8 @@ def getArgs(argument):
 	return outputFile, typeOption, modelOption, gamma, opt
 
 if __name__ == "__main__":
-	outputFile, typeOption, modelOption, gamma, opt = getArgs(len(sys.argv))
-
+	# outputFile, typeOption, modelOption, gamma, opt = getArgs(len(sys.argv))
+	opt = False
 	if (opt):
 
 		start = int(input("Enter start parameter: "))
@@ -302,5 +302,5 @@ if __name__ == "__main__":
 
 
 	else:
-		predict(outputFile, typeOption, modelOption, gamma)
-		x = findAccuracy(outputFile, typeOption, modelOption, gamma)
+		predict('best2.csv', 'tripeptide', 'SVC', 15)
+		x = findAccuracy('best2.csv', 'tripeptide', 'SVC', 15)
