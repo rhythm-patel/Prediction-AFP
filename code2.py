@@ -37,7 +37,7 @@ def findPercentageInSeries(ser):
 
 def fitModel(X_train,y_train,gamma):
 
-    # model = SVC(gamma=91, kernel = "rbf") # our ML model
+    # model = SVC(gamma=gamma, kernel = "rbf") # our ML model
     # model.fit(X_train,y_train) # fit the model by x & y of train
     # return model
 
@@ -199,7 +199,7 @@ def findOptimalGamma(start,end):
 
 gamma = 700
 
-# predict(gamma)
-# x = findAccuracy(gamma)
+predict(gamma)
+x = findAccuracy(gamma)
 # findOptimalGamma(0,700)
-optimalParameters()
+# optimalParameters()

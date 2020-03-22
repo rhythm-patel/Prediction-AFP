@@ -207,6 +207,6 @@ def findOptimalGamma(start,end):
 
 gamma = 700
 
-# predict(gamma)
-# x = findAccuracy(gamma)
-optimalParameters()
+predict(gamma)
+x = findAccuracy(gamma)
+# optimalParameters()
