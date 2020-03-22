@@ -42,42 +42,42 @@ python3 final.py -o <output File> -type {aminoacid | dipepeptide | tripeptide} -
 python3 final.py -o a.csv -type dipeptide -model SVC -gamma 91
 ```
 
-Output exported in a.csv
-Avg Train Accuracy: 0.9981372549019607
+>Output exported in a.csv\
+Avg Train Accuracy: 0.9981372549019607\
 Avg Test Accuracy: 0.8631372549019607
 
 ```
 python3 final.py -o b.csv -type tripeptide -model RFC -n_estimators 700
 ```
 
-Output exported in b.csv
-Avg Train Accuracy: 1.0
+>Output exported in b.csv\
+Avg Train Accuracy: 1.0\
 Avg Test Accuracy: 0.8874509803921569
 
 ```
 python3 final.py -o a.csv -type aminoacid -model SVC -optimalParameters
 ```
 
-Enter start parameter: 40
-Enter end parameter: 200
-Enter step parameter: 30
-Gamma : 40
-Avg Train Accuracy:  0.9235294117647058
-Avg Test Accuracy:  0.851764705882353
-Gamma : 70
-Avg Train Accuracy:  0.9575490196078432
-Avg Test Accuracy:  0.8623529411764705
-Gamma : 100
-Avg Train Accuracy:  0.9748039215686275
-Avg Test Accuracy:  0.8619607843137255
-Gamma : 130
-Avg Train Accuracy:  0.9858823529411765
-Avg Test Accuracy:  0.8564705882352941
-Gamma : 160
-Avg Train Accuracy:  0.9920588235294119
-Avg Test Accuracy:  0.8564705882352941
-Gamma : 190
-Avg Train Accuracy:  0.993921568627451
+>Enter start parameter: 40\
+Enter end parameter: 200\
+Enter step parameter: 30\
+Gamma : 40\
+Avg Train Accuracy:  0.9235294117647058\
+Avg Test Accuracy:  0.851764705882353\
+Gamma : 70\
+Avg Train Accuracy:  0.9575490196078432\
+Avg Test Accuracy:  0.8623529411764705\
+Gamma : 100\
+Avg Train Accuracy:  0.9748039215686275\
+Avg Test Accuracy:  0.8619607843137255\
+Gamma : 130\
+Avg Train Accuracy:  0.9858823529411765\
+Avg Test Accuracy:  0.8564705882352941\
+Gamma : 160\
+Avg Train Accuracy:  0.9920588235294119\
+Avg Test Accuracy:  0.8564705882352941\
+Gamma : 190\
+Avg Train Accuracy:  0.993921568627451\
 Avg Test Accuracy:  0.8525490196078431
 
 ![img](img.png)
@@ -86,10 +86,10 @@ Avg Test Accuracy:  0.8525490196078431
 python3 final.py -o c.csv -type tripeptide -model SVC -n_estimators 700
 ```
 
-Invalid set of arguments. Please see README
+>Invalid set of arguments. Please see README
 
 ```
-python3 final.py -o c.csv -type tripeptide -model SVC
+>python3 final.py -o c.csv -type tripeptide -model SVC
 ```
 
 Invalid length of arguments. Please see README
