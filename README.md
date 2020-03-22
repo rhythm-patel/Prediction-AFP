@@ -92,4 +92,4 @@ python3 final.py -o c.csv -type tripeptide -model SVC -n_estimators 700
 >python3 final.py -o c.csv -type tripeptide -model SVC
 ```
 
-Invalid length of arguments. Please see README
+>Invalid length of arguments. Please see README
