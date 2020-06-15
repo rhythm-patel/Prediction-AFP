@@ -139,3 +139,5 @@ python3 final.py -o c.csv -type tripeptide -model SVC -n_estimators 700
 ```
 
 >Invalid length of arguments. Please see README
+
+### [Kaggle Link](https://www.kaggle.com/c/iqb2020)
