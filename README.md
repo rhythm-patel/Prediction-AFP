@@ -2,6 +2,8 @@
 ## About
 This repository is about predicting the anti-fungal peptide sequences. Along with predicting, this code also finds the Train & Test accuracy with K- Fold method and 5 folds. 
 
+**[Kaggle Link](https://www.kaggle.com/c/iqb2020)**
+
 Files required:
 
 * **train.csv:** This file has three columns, the first column contains ID (sequence number), the second column contains contain the label (-1 for negative and +1 for positive sample) and the third column contains the sequence of peptide in a single  sting.
@@ -139,5 +141,3 @@ python3 final.py -o c.csv -type tripeptide -model SVC -n_estimators 700
 ```
 
 >Invalid length of arguments. Please see README
-
-### [Kaggle Link](https://www.kaggle.com/c/iqb2020)
